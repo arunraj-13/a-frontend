@@ -41,7 +41,8 @@ const Query = () => {
         }
     
     const handleChange = (value) =>{
-        changeSubject(value)
+        // changeSubject(value)
+        changeSubject(3)
         
     }
     const changeSub = (value) =>{
