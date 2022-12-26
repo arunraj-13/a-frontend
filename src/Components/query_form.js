@@ -41,8 +41,8 @@ const Query = () => {
         }
     
     const handleChange = (value) =>{
-        // changeSubject(value)
-        changeSubject(3)
+        changeSubject(value)
+        
         
     }
     const changeSub = (value) =>{
@@ -99,8 +99,8 @@ const Query = () => {
                     </Col>
                     <Col>
                         <Form.Select aria-label="Default select example" onChange={(event)=>{handleChange(event.target.value)}}>
-                            {/* <option value="0">Year</option>
-                            <option value="1">First year</option>
+                            <option value="0">Year</option>
+                            {/*<option value="1">First year</option>
                             <option value="2">Second year</option> */}
                             <option value="3">Pre-final year</option>
                             {/* <option value="4">Final year</option> */}
