@@ -8,8 +8,8 @@ const Result = () => {
   const reduxQuestion = useSelector((state) => state.questionUpdate.value)
   const [repeat, setRepeat] = useState(false)
   const [page, setPage] = useState(false)
-  const [essayInOrder, setEssayInOrder] = useState([])
-  const [shortInOrder, setShortInOrder] = useState([])
+  const [essayInOrder, setEssayInOrder] = useState()
+  const [shortInOrder, setShortInOrder] = useState()
   
   const initialRender = useRef(true)
   var essay = reduxQuestion.Essay
@@ -80,50 +80,31 @@ useEffect(()=>{
     setPage(!page)
     //console.log(page)
   }
-  
-  
-  return (
-    <>
-      {/* Weightage, Repeatability, Page Wise */}
-      <Container className = 'justify-content-center align-items-center'> 
-        <Row className='mt-2 mb-2'>
-          <Col>
-            <Form.Group className="md-auto" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Sort by repeatability" onChange={()=>{handleRepeat()}}/>
-            </Form.Group>
-          </Col>
-          <Col>
-            <Form.Group className="md-auto" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Sort by page wise" onChange={()=>{handlePage()}}/>
-            </Form.Group>
-          </Col>     
-        </Row>
-      </Container>
-      <Badge bg="primary">
-        Essay
-      </Badge>
-      <Table striped bordered hover className='w-auto'>
-      <thead className='table-dark'>
-        <tr>
-          <th className='w-auto'>S.No</th>
-          <th>Questions</th>
-          
-        </tr>
-      </thead>
-      <tbody>
-        
-        {essayInOrder.map(val => {
-          
-          return <tr>
-          <td>{essaySerialNo()}</td>
-          <td>{val.title}
-            <Badge pill bg="success">{val.repeated}</Badge>
-            <Badge pill bg="info">P.No {val.book1}</Badge>
-          </td>
-        </tr>})}
-      </tbody>
-      </Table>
-      <Badge bg="primary">
+  const essayDisplay = () =>{
+    if(essayInOrder){
+      return(
+        <><Badge bg="primary">Essay</Badge>
+        <Table striped bordered hover className='w-auto'>
+          <thead className='table-dark'>
+              <tr>
+                <th className='w-auto'>S.No</th>
+                <th>Questions</th>
+              </tr>
+          </thead>
+          <tbody>
+                {essayInOrder.map(val => { return <tr>
+                    <td>{essaySerialNo()}</td>
+                    <td>{val.title}
+                      <Badge pill bg="success">{val.repeated}</Badge>
+                      <Badge pill bg="info">P.No {val.book1}</Badge>
+                    </td>
+                </tr>})}
+          </tbody>
+          </Table></>
+      ) }
+  }
+  const shortDisplay = () =>{
+    if(shortInOrder){return(<><Badge bg="primary">
         Short Notes
       </Badge>
       <Table striped bordered hover>
@@ -142,19 +123,30 @@ useEffect(()=>{
             <Badge pill bg="info">P.No {val.book1}</Badge>
           </td>
         </tr>})}
-        {/* <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
-        </tr> */}
+        
       </tbody>
-    </Table>
+    </Table></>)}
+  }
+  
+  return (
+    <>
+      {/* Weightage, Repeatability, Page Wise */}
+      <Container className = 'justify-content-center align-items-center'> 
+        <Row className='mt-2 mb-2'>
+          <Col>
+            <Form.Group className="md-auto" controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Sort by repeatability" onChange={()=>{handleRepeat()}}/>
+            </Form.Group>
+          </Col>
+          <Col>
+            <Form.Group className="md-auto" controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Sort by page wise" onChange={()=>{handlePage()}}/>
+            </Form.Group>
+          </Col>     
+        </Row>
+      </Container>
+      {essayDisplay()}
+      {shortDisplay()}
 
     </>
   )

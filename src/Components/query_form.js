@@ -28,8 +28,9 @@ const Query = () => {
             setSubject(["Pathology","Pharmacology","Microbiology"])
             setSub("Pathology") 
         }else if(year == 3){
-            setSubject(["Ent","Spm","Opthalmology"])
-            setSub("Ent") 
+            // setSubject(["Ent","Spm","Opthalmology"])
+            setSubject(["Spm"])
+            setSub("Spm") 
         }else if(year == 4){
             setSubject(["Medicine","Surgery","Obg","Pediatrics"])
             setSub("Medicine") 
@@ -97,11 +98,11 @@ const Query = () => {
                     </Col>
                     <Col>
                         <Form.Select aria-label="Default select example" onChange={(event)=>{handleChange(event.target.value)}}>
-                            <option value="0">Year</option>
+                            {/* <option value="0">Year</option>
                             <option value="1">First year</option>
-                            <option value="2">Second year</option>
+                            <option value="2">Second year</option> */}
                             <option value="3">Pre-final year</option>
-                            <option value="4">Final year</option>
+                            {/* <option value="4">Final year</option> */}
                         </Form.Select>
                         
                     </Col>
