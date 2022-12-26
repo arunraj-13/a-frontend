@@ -1,0 +1,9 @@
+main {
+  display: grid;
+  min-height: 80vh;
+  align-items: center;
+}
+filter-box {
+  display: flex;
+  align-content: center;
+}
