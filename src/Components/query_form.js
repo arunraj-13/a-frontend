@@ -68,7 +68,7 @@ const Query = () => {
     },[chapter])
     const sendTheData = () =>{
         console.log(sub)
-        fetch('https://alphatestapp.onrender.com/question',{
+        fetch('https://alphatestapp.onrender.com:5000/question',{
             method: "post",
             headers: {
                 "Content-Type":"application/json"
